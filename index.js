@@ -19,6 +19,10 @@ var db = mongoose.connection
 db.on('error',()=> console.log("error in connecting to Database"))
 db.once('open',()=> console.log("Connected to Database"))
 
+app.get('/add',(req,res)=>{
+    res.send({msg:'hello world'})
+})
+
 app.post("/add",(req,res)=>{
     var category_select = req.body.category_select
     var amount_input = req.body.amount_input
