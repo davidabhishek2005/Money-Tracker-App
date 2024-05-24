@@ -9,6 +9,7 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({
     extended : true
 }))
+
 //davidabhisekhg
 //xjHiS9PjSi9AmkYx
 
@@ -35,6 +36,7 @@ app.post("/add",(req,res)=>{
         throw err;
        }
        console.log("Record inserted Successfully")
+       res.send({msg:"successful"})
      })
 })
 

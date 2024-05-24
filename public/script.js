@@ -8,7 +8,7 @@ const Addbtn = document.getElementById('add_btn')
 const ExpenseTableBody = document.getElementById('expense-table-body')
 const totalAmountCell = document.getElementById('Total-amount')
 
-Addbtn.addEventListener('click',function(){
+Addbtn.addEventListener('click', async function(){
     const category = CategorySelect.value;
     const info = InfoInput.value;
     const amount = Number(AmountInput.value);
@@ -31,6 +31,18 @@ Addbtn.addEventListener('click',function(){
         return;
     }
     expenses.push({category,amount,info,date})
+    var data = {
+        'category_select': category,
+        'amount_input': amount,
+        'info':info,
+        'date_input': date
+    }
+
+    const response = await fetch ('http://localhost:5000/add',{method : "POST",headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)}).then(res=>res.json()).then(data=>{console.log(data)})
+    
 
     if(category === 'Income'){
         totalAmount += amount;
